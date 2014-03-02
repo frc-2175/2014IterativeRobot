@@ -1,21 +1,19 @@
-enum ShiftState : bool { LowGear=true, HighGear=false };
+//enum ShiftState : bool { LowGear=true, HighGear=false };
 
 class Drive {
 public:
 	Drive();
 	void Init();
 	void Shift(bool highGear);
-	void ArcadeDrive(Joystick* stick1, Joystick *stick2);
+	void DriveUpdate(Joystick* stick1, Joystick *stick2);
 	void Stop();
 	
-	ShiftState CurrentGear();
+	bool CurrentGear();
 	double LeftSideOutput();
 	double RightSideOutput();
 	double ForwardOutput();
 	double TurnOutput();
 	double Heading();
-	/*Encoder *GetLeftEncoder();
-	Encoder *GetRightEncoder();*/
 	void ResetEncoders();
 	double LeftEncoderRate();
 	double LeftEncoderDistance();
@@ -23,7 +21,7 @@ public:
 	double RightEncoderDistance();
 
 private:
-	Drive* drive;
+	RobotDrive* drive;
 	Solenoid* shifterSolenoid;
 	Gyro* gyro;
 	Encoder* leftEncoder;
@@ -33,4 +31,7 @@ private:
 	double rightSideOutput;
 	double forwardOutput;
 	double turnOutput;
+	double heading;
+	double distance;
+	bool gear;
 };

@@ -146,7 +146,7 @@
             <stringAttribute key="BLD::Info|Tool|C-Compiler|flags|PPC32diab" value="$(CC_ARCH_SPEC) -W:c:,-Xclib-optim-off -Xansi -Xlocal-data-area-static-only -Xforce-declarations  -Xmake-dependency=0xd"/>
             <stringAttribute key="BLD::Info|Tool|C-Compiler|flags|PPC32gnu" value="$(CC_ARCH_SPEC) -ansi  -Wall  -MD -MP"/>
             <stringAttribute key="BLD::Info|Tool|C-Compiler|flags|PPC603diab" value="$(CC_ARCH_SPEC) -W:c:,-Xclib-optim-off -Xansi -Xlocal-data-area-static-only -Xforce-declarations  -Xmake-dependency=0xd"/>
-            <stringAttribute key="BLD::Info|Tool|C-Compiler|flags|PPC603gnu" value="$(CC_ARCH_SPEC) -ansi  -Wall  -MD -MP -mlongcall"/>
+            <stringAttribute key="BLD::Info|Tool|C-Compiler|flags|PPC603gnu" value="$(CC_ARCH_SPEC) -ansi  -Wall  -MD -MP -mlongcall -std=c++11"/>
             <stringAttribute key="BLD::Info|Tool|C-Compiler|nonDbgFlags|PPC32diab" value="-XO -Xsize-opt"/>
             <stringAttribute key="BLD::Info|Tool|C-Compiler|nonDbgFlags|PPC32gnu" value="-O2 -fstrength-reduce -fno-builtin"/>
             <stringAttribute key="BLD::Info|Tool|C-Compiler|nonDbgFlags|PPC603diab" value="-XO -Xsize-opt"/>
@@ -244,14 +244,9 @@
         </mapAttribute>
     </attributes>
     <buildtargets>
-        <buildtarget buildtool="Linker" name="IterativeTemplate" passed="false" targetname="IterativeTemplate">
+        <buildtarget buildtool="Linker" name="2014IterativeRobot" passed="false" targetname="2014IterativeRobot">
             <contents>
-                <buildtargetreference name="/IterativeTemplate/IterativeTemplate_partialImage"/>
-            </contents>
-        </buildtarget>
-        <buildtarget buildtool="Partial Image Linker" name="IterativeTemplate_partialImage" passed="true" targetname="IterativeTemplate_partialImage">
-            <contents>
-                <folder name="/IterativeTemplate" recursive="true"/>
+                <folder name="/2014IterativeRobot" recursive="true"/>
             </contents>
         </buildtarget>
     </buildtargets>

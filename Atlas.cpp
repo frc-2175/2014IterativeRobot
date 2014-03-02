@@ -1,4 +1,7 @@
 #include "WPILib.h"
+#include "Drive.h"
+#include "Shooter.h"
+#include "RollerBar.h"
 
 /**
  * This is a demo program showing the use of the RobotBase class.
@@ -7,24 +10,25 @@
  */ 
 class Atlas : public IterativeRobot
 {
-	RobotDrive myRobot; // robot drive system
 	Joystick stick1; // drive joystick 1 (left)
 	Joystick stick2; // drive joystick 2 (right)
 	Joystick stick3; // weapons
-	/*Drive drive;
+	Drive drive;
 	Shooter shooter;
 	RollerBar rollerBar;
 	Compressor compressor;
-	Sensors sensors;*/
-
+	
 public:
 	Atlas():
-		myRobot(1, 2),	// these must be initialized in the same order
+		//myRobot(1, 2),	// these must be initialized in the same order
 		stick1(1),		// as they are declared above.
 		stick2(2),
-		stick3(3)
+		stick3(3),
+		drive(),
+		shooter(),
+		rollerBar(),
+		compressor(1,7,1,3)
 	{
-		myRobot.SetExpiration(0.1);
 		this->SetPeriod(0); 	//Set update period to sync with robot control packets (20ms nominal)
 		
 	}
@@ -97,7 +101,7 @@ void Atlas::TeleopInit() {
  * rate while the robot is in teleop mode.
  */
 void Atlas::TeleopPeriodic() {
-	myRobot.ArcadeDrive(stick1); // drive with arcade style 
+	drive.DriveUpdate(&stick1,&stick2); // drive with arcade style 
 }
 
 /**
