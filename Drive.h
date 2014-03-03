@@ -1,14 +1,14 @@
-//enum ShiftState : bool { LowGear=true, HighGear=false };
-
 class Drive {
 public:
+	typedef enum { HighGear=DoubleSolenoid::kForward, LowGear=DoubleSolenoid::kReverse } Gear;// : bool ;
+	
 	Drive();
 	void Init();
-	void Shift(bool highGear);
+	void Shift(Gear newGear);
 	void DriveUpdate(Joystick* stick1, Joystick *stick2);
 	void Stop();
 	
-	bool CurrentGear();
+	Gear CurrentGear();
 	double LeftSideOutput();
 	double RightSideOutput();
 	double ForwardOutput();
@@ -22,7 +22,7 @@ public:
 
 private:
 	RobotDrive* drive;
-	Solenoid* shifterSolenoid;
+	DoubleSolenoid* shifterSolenoid;
 	Gyro* gyro;
 	Encoder* leftEncoder;
 	Encoder* rightEncoder;
@@ -33,5 +33,5 @@ private:
 	double turnOutput;
 	double heading;
 	double distance;
-	bool gear;
+	Gear gear;
 };

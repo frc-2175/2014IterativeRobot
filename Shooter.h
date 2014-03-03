@@ -1,23 +1,32 @@
 class Shooter {
 public:
+	typedef enum { LongShot=1, ShortShot=2 } ShotChoice;
 	Shooter();
 	void Init();
 	void ReleaseLatch();
-	void RunWinch(float value);
+	void CloseLatch();
+	void RunWinch(double value, bool sensorOverride);
+	void WinchDown(bool sensorOverride);
+	void WinchUp(bool sensorOverride);
+	void ChooseShot(ShotChoice newShotChoice);
+	void SwitchShot();
 	
 	double WinchOutput();
 	bool IsLatched();
-	bool IsUnwouned();
+	bool IsUnwound();
 	void ResetEncoder();
 	double WinchEncoderRate();
 	double WinchEncoderDistance();
 	double WinchPosition();
 	bool BallPossessed();
-	double BallDistace();
+	double BallDistance();
+	ShotChoice CurrentShot();
 
 private:
+	void UpdateTensionSolenoid();
+	
 	Solenoid* latchSolenoid;
-	Solenoid* tensionerSolenoid;
+	DoubleSolenoid* tensionerSolenoid;
 	Talon* winchMotors;
 	Encoder* winchEncoder;
 	DigitalInput* latchSwitch;
@@ -27,4 +36,5 @@ private:
 	double winchPosition;
 	double ballDistance;
 	bool ballPossessed;
+	ShotChoice currentShot;
 };

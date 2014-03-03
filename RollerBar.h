@@ -1,24 +1,26 @@
-//enum RollerState : bool { In=true, Out=false };
-//enum ArmPosition : bool { In=true, Out=false };
-
 class RollerBar {
 public:
+	typedef enum { In=DoubleSolenoid::kReverse, Out=DoubleSolenoid::kForward } ArmPosition;
+	
 	RollerBar();
 	void Init();
-	void Suck(bool direction);
-	void MoveArm(bool position);
-	void Stop();
+	void Suck(bool suckIn);
+	void RunRoller(double value);
+	void StopRoller();
+	void MoveArmOut();
+	void MoveArmIn();
+	void MoveArm(ArmPosition position);
 	
-	bool ArmOutput();
 	bool IsArmOut();
-	double RollerSpeed();
-
+	ArmPosition GetArmPosition();
+	
 private:
-	Solenoid* armSolenoid;
+	void UpdateArmSolenoid();
+
+	DoubleSolenoid* armSolenoid;
 	DigitalInput* armSensor1;
 	DigitalInput* armSensor2;
 	Talon* rollerMotors;
-	
-	double rollerSpeed;
-	bool armOutput;
+
+	ArmPosition armPosition;
 };
